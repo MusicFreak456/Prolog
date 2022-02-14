@@ -1,0 +1,3 @@
+(executable
+ (name prolog)
+ (libraries prolog_parser evaluator frame helpers linenoise))

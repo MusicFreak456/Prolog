@@ -1,0 +1,7 @@
+(library 
+ (name menhir_parser)
+ (libraries syntax menhirLib))
+
+(menhir
+ (modules menhir_parser)
+ (flags --table -la 2))

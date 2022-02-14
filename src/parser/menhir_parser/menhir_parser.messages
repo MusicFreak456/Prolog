@@ -1,0 +1,368 @@
+clause: VARIABLE
+##
+## Ends in an error in state: 0.
+##
+## clause' -> . clause [ # ]
+##
+## The known suffix of the stack is as follows:
+##
+##
+
+Clause must be either a fact or a rule.
+
+clause: ATOM VARIABLE
+##
+## Ends in an error in state: 1.
+##
+## predicate -> ATOM . [ RULE PERIOD COMMA ]
+## symbol -> ATOM . L_PARENTHESIS terms R_PARENTHESIS [ RULE PERIOD COMMA ]
+##
+## The known suffix of the stack is as follows:
+## ATOM
+##
+
+Expected '.'.
+
+clause: ATOM L_PARENTHESIS R_BRACKET
+##
+## Ends in an error in state: 2.
+##
+## symbol -> ATOM L_PARENTHESIS . terms R_PARENTHESIS [ R_PARENTHESIS R_BRACKET RULE PIPE PERIOD COMMA ]
+##
+## The known suffix of the stack is as follows:
+## ATOM L_PARENTHESIS
+##
+
+Predicate arguments must consist of valid terms (variable or n-ary symbol).
+
+clause: ATOM L_PARENTHESIS L_BRACKET R_PARENTHESIS
+##
+## Ends in an error in state: 4.
+##
+## term -> L_BRACKET . loption(separated_nonempty_list(COMMA,term)) R_BRACKET [ R_PARENTHESIS R_BRACKET PIPE COMMA ]
+## term -> L_BRACKET . term PIPE term R_BRACKET [ R_PARENTHESIS R_BRACKET PIPE COMMA ]
+##
+## The known suffix of the stack is as follows:
+## L_BRACKET
+##
+
+Expected list of terms or cons.
+
+clause: ATOM L_PARENTHESIS ATOM VARIABLE
+##
+## Ends in an error in state: 5.
+##
+## atom -> ATOM . [ R_PARENTHESIS R_BRACKET PIPE COMMA ]
+## symbol -> ATOM . L_PARENTHESIS terms R_PARENTHESIS [ R_PARENTHESIS R_BRACKET PIPE COMMA ]
+##
+## The known suffix of the stack is as follows:
+## ATOM
+##
+
+Expected ','.
+
+clause: ATOM L_PARENTHESIS L_BRACKET ATOM R_PARENTHESIS
+##
+## Ends in an error in state: 6.
+##
+## separated_nonempty_list(COMMA,term) -> term . [ R_BRACKET ]
+## separated_nonempty_list(COMMA,term) -> term . COMMA separated_nonempty_list(COMMA,term) [ R_BRACKET ]
+## term -> L_BRACKET term . PIPE term R_BRACKET [ R_PARENTHESIS R_BRACKET PIPE COMMA ]
+##
+## The known suffix of the stack is as follows:
+## L_BRACKET term
+##
+## WARNING: This example involves spurious reductions.
+## This implies that, although the LR(1) items shown above provide an
+## accurate view of the past (what has been recognized so far), they
+## may provide an INCOMPLETE view of the future (what was expected next).
+## In state 5, spurious reduction of production atom -> ATOM
+## In state 11, spurious reduction of production term -> atom
+##
+
+Unclosed squere bracket.
+
+clause: ATOM L_PARENTHESIS L_BRACKET ATOM PIPE R_PARENTHESIS
+##
+## Ends in an error in state: 7.
+##
+## term -> L_BRACKET term PIPE . term R_BRACKET [ R_PARENTHESIS R_BRACKET PIPE COMMA ]
+##
+## The known suffix of the stack is as follows:
+## L_BRACKET term PIPE
+##
+ 
+Second argument of cons was expected.
+
+clause: ATOM L_PARENTHESIS L_BRACKET ATOM PIPE ATOM R_PARENTHESIS
+##
+## Ends in an error in state: 8.
+##
+## term -> L_BRACKET term PIPE term . R_BRACKET [ R_PARENTHESIS R_BRACKET PIPE COMMA ]
+##
+## The known suffix of the stack is as follows:
+## L_BRACKET term PIPE term
+##
+## WARNING: This example involves spurious reductions.
+## This implies that, although the LR(1) items shown above provide an
+## accurate view of the past (what has been recognized so far), they
+## may provide an INCOMPLETE view of the future (what was expected next).
+## In state 5, spurious reduction of production atom -> ATOM
+## In state 11, spurious reduction of production term -> atom
+##
+
+Invalid cons syntax.
+
+clause: ATOM L_PARENTHESIS ATOM COMMA R_PARENTHESIS
+##
+## Ends in an error in state: 12.
+##
+## separated_nonempty_list(COMMA,term) -> term COMMA . separated_nonempty_list(COMMA,term) [ R_PARENTHESIS R_BRACKET ]
+##
+## The known suffix of the stack is as follows:
+## term COMMA
+##
+
+Expected argument.
+
+clause: ATOM L_PARENTHESIS ATOM PIPE
+##
+## Ends in an error in state: 13.
+##
+## separated_nonempty_list(COMMA,term) -> term . [ R_PARENTHESIS R_BRACKET ]
+## separated_nonempty_list(COMMA,term) -> term . COMMA separated_nonempty_list(COMMA,term) [ R_PARENTHESIS R_BRACKET ]
+##
+## The known suffix of the stack is as follows:
+## term
+##
+## WARNING: This example involves spurious reductions.
+## This implies that, although the LR(1) items shown above provide an
+## accurate view of the past (what has been recognized so far), they
+## may provide an INCOMPLETE view of the future (what was expected next).
+## In state 5, spurious reduction of production atom -> ATOM
+## In state 11, spurious reduction of production term -> atom
+##
+
+Invalid cons syntax. Perhaps missing squere brackets.
+
+clause: ATOM L_PARENTHESIS L_BRACKET ATOM COMMA ATOM R_PARENTHESIS
+##
+## Ends in an error in state: 16.
+##
+## term -> L_BRACKET loption(separated_nonempty_list(COMMA,term)) . R_BRACKET [ R_PARENTHESIS R_BRACKET PIPE COMMA ]
+##
+## The known suffix of the stack is as follows:
+## L_BRACKET loption(separated_nonempty_list(COMMA,term))
+##
+## WARNING: This example involves spurious reductions.
+## This implies that, although the LR(1) items shown above provide an
+## accurate view of the past (what has been recognized so far), they
+## may provide an INCOMPLETE view of the future (what was expected next).
+## In state 5, spurious reduction of production atom -> ATOM
+## In state 11, spurious reduction of production term -> atom
+## In state 13, spurious reduction of production separated_nonempty_list(COMMA,term) -> term
+## In state 14, spurious reduction of production separated_nonempty_list(COMMA,term) -> term COMMA separated_nonempty_list(COMMA,term)
+## In state 15, spurious reduction of production loption(separated_nonempty_list(COMMA,term)) -> separated_nonempty_list(COMMA,term)
+##
+
+Unclosed squere bracket.
+
+clause: ATOM L_PARENTHESIS ATOM R_BRACKET
+##
+## Ends in an error in state: 18.
+##
+## symbol -> ATOM L_PARENTHESIS terms . R_PARENTHESIS [ R_PARENTHESIS R_BRACKET RULE PIPE PERIOD COMMA ]
+##
+## The known suffix of the stack is as follows:
+## ATOM L_PARENTHESIS terms
+##
+## WARNING: This example involves spurious reductions.
+## This implies that, although the LR(1) items shown above provide an
+## accurate view of the past (what has been recognized so far), they
+## may provide an INCOMPLETE view of the future (what was expected next).
+## In state 5, spurious reduction of production atom -> ATOM
+## In state 11, spurious reduction of production term -> atom
+## In state 13, spurious reduction of production separated_nonempty_list(COMMA,term) -> term
+## In state 15, spurious reduction of production loption(separated_nonempty_list(COMMA,term)) -> separated_nonempty_list(COMMA,term)
+## In state 20, spurious reduction of production terms -> loption(separated_nonempty_list(COMMA,term))
+##
+
+Unexpected character.
+
+clause: ATOM COMMA
+##
+## Ends in an error in state: 22.
+##
+## clause -> predicate . PERIOD [ # ]
+## clause -> predicate . RULE predicates PERIOD [ # ]
+##
+## The known suffix of the stack is as follows:
+## predicate
+##
+## WARNING: This example involves spurious reductions.
+## This implies that, although the LR(1) items shown above provide an
+## accurate view of the past (what has been recognized so far), they
+## may provide an INCOMPLETE view of the future (what was expected next).
+## In state 1, spurious reduction of production predicate -> ATOM
+##
+
+Expected '.'.
+
+clause: ATOM RULE VARIABLE
+##
+## Ends in an error in state: 23.
+##
+## clause -> predicate RULE . predicates PERIOD [ # ]
+##
+## The known suffix of the stack is as follows:
+## predicate RULE
+##
+
+Body of a rule must be a nonempty list of comma-separated predicates (n-ary symbols).
+
+query: DB_QUERY ATOM RULE
+##
+## Ends in an error in state: 27.
+##
+## separated_nonempty_list(COMMA,predicate) -> predicate . [ PERIOD ]
+## separated_nonempty_list(COMMA,predicate) -> predicate . COMMA separated_nonempty_list(COMMA,predicate) [ PERIOD ]
+##
+## The known suffix of the stack is as follows:
+## predicate
+##
+## WARNING: This example involves spurious reductions.
+## This implies that, although the LR(1) items shown above provide an
+## accurate view of the past (what has been recognized so far), they
+## may provide an INCOMPLETE view of the future (what was expected next).
+## In state 1, spurious reduction of production predicate -> ATOM
+##
+
+Expected '.'.
+
+query: DB_QUERY ATOM COMMA VARIABLE
+##
+## Ends in an error in state: 28.
+##
+## separated_nonempty_list(COMMA,predicate) -> predicate COMMA . separated_nonempty_list(COMMA,predicate) [ PERIOD ]
+##
+## The known suffix of the stack is as follows:
+## predicate COMMA
+##
+
+Query must be a list of predicates (n-ary) symbols saparated with commas.
+
+program: VARIABLE
+##
+## Ends in an error in state: 32.
+##
+## program' -> . program [ # ]
+##
+## The known suffix of the stack is as follows:
+##
+##
+
+Head of a clause must be a predicate (n-ary symbol).
+
+program: ATOM COMMA
+##
+## Ends in an error in state: 34.
+##
+## clause -> predicate . PERIOD [ EOF ATOM ]
+## clause -> predicate . RULE predicates PERIOD [ EOF ATOM ]
+##
+## The known suffix of the stack is as follows:
+## predicate
+##
+## WARNING: This example involves spurious reductions.
+## This implies that, although the LR(1) items shown above provide an
+## accurate view of the past (what has been recognized so far), they
+## may provide an INCOMPLETE view of the future (what was expected next).
+## In state 1, spurious reduction of production predicate -> ATOM
+##
+
+Expected '.'.
+
+program: ATOM RULE VARIABLE
+##
+## Ends in an error in state: 35.
+##
+## clause -> predicate RULE . predicates PERIOD [ EOF ATOM ]
+##
+## The known suffix of the stack is as follows:
+## predicate RULE
+##
+
+Body of a rule must be a nonempty list of comma-separated predicates (n-ary symbols).
+
+program: ATOM PERIOD VARIABLE
+##
+## Ends in an error in state: 41.
+##
+## list(clause) -> clause . list(clause) [ EOF ]
+##
+## The known suffix of the stack is as follows:
+## clause
+##
+
+Program must consist of predicates (n-ary symbols) separated with periods.
+
+query: VARIABLE
+##
+## Ends in an error in state: 43.
+##
+## query' -> . query [ # ]
+##
+## The known suffix of the stack is as follows:
+##
+##
+
+Query must be either database query starting with "?-" or open database request: "[<filename>].".
+
+query: L_BRACKET VARIABLE
+##
+## Ends in an error in state: 44.
+##
+## query -> L_BRACKET . FILEPATH R_BRACKET PERIOD [ # ]
+##
+## The known suffix of the stack is as follows:
+## L_BRACKET
+##
+
+Filename extension must be written explicitly.
+
+query: L_BRACKET FILEPATH VARIABLE
+##
+## Ends in an error in state: 45.
+##
+## query -> L_BRACKET FILEPATH . R_BRACKET PERIOD [ # ]
+##
+## The known suffix of the stack is as follows:
+## L_BRACKET FILEPATH
+##
+
+Expected closing bracket.
+
+query: L_BRACKET FILEPATH R_BRACKET VARIABLE
+##
+## Ends in an error in state: 46.
+##
+## query -> L_BRACKET FILEPATH R_BRACKET . PERIOD [ # ]
+##
+## The known suffix of the stack is as follows:
+## L_BRACKET FILEPATH R_BRACKET
+##
+
+Expected '.' after request to open database.
+
+query: DB_QUERY VARIABLE
+##
+## Ends in an error in state: 48.
+##
+## query -> DB_QUERY . predicates PERIOD [ # ]
+##
+## The known suffix of the stack is as follows:
+## DB_QUERY
+##
+
+Query must be a list of predicates (n-ary) symbols saparated with commas.
+

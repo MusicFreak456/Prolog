@@ -1,0 +1,8 @@
+(library 
+ (name prolog_parser)
+ (libraries menhir_parser prolog_lexer error))
+
+(rule
+ (deps ./menhir_parser/menhir_parser.messages ./menhir_parser/menhir_parser.mly)
+ (targets menhir_parser_messages.ml)
+ (action (with-stdout-to %{targets} (run menhir --compile-errors %{deps}))))

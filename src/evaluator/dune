@@ -1,0 +1,4 @@
+(library
+ (name evaluator)
+ (libraries syntax prolog_parser database unifier frame))
+ 

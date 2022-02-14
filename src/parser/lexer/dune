@@ -1,0 +1,6 @@
+(library
+ (name prolog_lexer)
+ (libraries menhir_parser error))
+
+(ocamllex
+ (modules prolog_lexer))
